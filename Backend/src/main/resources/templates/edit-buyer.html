@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Buyer</title>
+</head>
+<body>
+
+    <h1>Edit Buyer Details</h1>
+
+    <form th:action="@{/buyers/update}" method="post">
+
+        <input type="hidden" name="id" th:value="${buyer.id}">
+
+        <label>Buyer Name:</label>
+        <input type="text" name="buyerName"
+               th:value="${buyer.buyerName}" required>
+        <br><br>
+
+        <label>Company Name:</label>
+        <input type="text" name="companyName"
+               th:value="${buyer.companyName}">
+        <br><br>
+
+        <label>Email:</label>
+        <input type="email" name="email"
+               th:value="${buyer.email}" required>
+        <br><br>
+
+        <label>Website:</label>
+        <input type="text" name="website"
+               th:value="${buyer.website}">
+        <br><br>
+
+        <label>Country:</label>
+        <input type="text" name="country"
+               th:value="${buyer.country}">
+        <br><br>
+
+        <label>Source:</label>
+        <input type="text" name="source"
+               th:value="${buyer.source}">
+        <br><br>
+
+        <button type="submit">Update Buyer</button>
+
+    </form>
+
+    <br>
+    <a href="/buyers">Back to Buyers</a>
+
+</body>
+</html>

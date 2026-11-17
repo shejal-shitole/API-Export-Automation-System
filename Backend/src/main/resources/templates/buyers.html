@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Buyer Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #263b5e;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Export Automation - Buyer Management</h1>
+    
+<h2>Add New Buyer</h2>
+
+<form action="/buyers/save" method="post">
+
+    <label>Buyer Name:</label><br>
+    <input type="text" name="buyerName" required><br><br>
+
+    <label>Company Name:</label><br>
+    <input type="text" name="companyName"><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="email"><br><br>
+
+    <label>Website:</label><br>
+    <input type="text" name="website"><br><br>
+
+    <label>Country:</label><br>
+    <input type="text" name="country"><br><br>
+
+    <label>Source:</label><br>
+    <input type="text" name="source"><br><br>
+
+    <button type="submit">Save Buyer</button>
+
+</form>
+
+<hr>
+    
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Buyer Name</th>
+                <th>Company</th>
+                <th>Email</th>
+                <th>Email Status</th>
+                <th>Website</th>
+                <th>Country</th>
+                <th>Source</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="buyer : ${buyers}">
+                <td th:text="${buyer.id}"></td>
+                <td th:text="${buyer.buyerName}"></td>
+                <td th:text="${buyer.companyName}"></td>
+                <td th:text="${buyer.email}"></td>
+                <td th:text="${buyer.emailStatus}"></td>
+                <td th:text="${buyer.website}"></td>
+                <td th:text="${buyer.country}"></td>
+                <td th:text="${buyer.source}"></td>
+                <td>
+    <a th:href="@{/buyers/edit/{id}(id=${buyer.id})}">
+        <button type="button">Edit</button>
+    </a>
+
+    <form th:action="@{/buyers/delete/{id}(id=${buyer.id})}"
+          method="post"
+          style="display:inline;">
+        <button type="submit">Delete</button>
+    </form>
+</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
